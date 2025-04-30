@@ -1,0 +1,58 @@
+<launch>
+    <!-- um982_1 -->
+    <group ns="RTK">
+        <arg name="port" default="/dev/ttyUSB0"/>
+        <arg name="baud_rate" default="921600"/>
+
+        <!-- RTK NTRIP-->
+        <arg name="enable_rtk" default="true"/>
+        <arg name="gga_sentence" default="$GNGGA,075200.90,3032.59826517,N,11421.33078970,E,1,05,4.2,34.5667,M,-14.1634,M,,*6E\r\n"/>
+        <arg name="ntrip_host" default="103.143.19.54"/>
+        <arg name="ntrip_port" default="8002"/>
+        <arg name="ntrip_mountpoint" default="RTCM33GRCEJpro"/>
+        <arg name="ntrip_user" default="wdcorsh788"/>
+        <arg name="ntrip_pass" default="39293"/>
+
+        <node pkg="unicore_driver" type="unicore_driver" name="unicore_driver" output="screen">
+            <param name="port" value="$(arg port)"/>
+            <param name="baud_rate" value="$(arg baud_rate)"/>
+
+            <param name="enable_rtk" value="$(arg enable_rtk)"/>
+            <param name="gga_sentence" value="$(arg gga_sentence)"/>
+            <param name="ntrip_host" value="$(arg ntrip_host)"/>
+            <param name="ntrip_port" value="$(arg ntrip_port)"/>
+            <param name="ntrip_mountpoint" value="$(arg ntrip_mountpoint)"/>
+            <param name="ntrip_user" value="$(arg ntrip_user)"/>
+            <param name="ntrip_pass" type="string" value="$(arg ntrip_pass)"/>
+        </node>
+    </group>
+
+    <!-- um982_2 -->
+    <group ns="SPP">
+        <arg name="port" default="/dev/ttyUSB1"/>
+        <arg name="baud_rate" default="921600"/>
+
+        <!-- RTK NTRIP -->
+        <arg name="enable_rtk" default="false"/>
+        <arg name="gga_sentence" default="$GNGGA,075201.90,3032.59820000,N,11421.33070000,E,1,05,4.2,34.5667,M,-14.1634,M,,*6F\r\n"/>
+        <arg name="ntrip_host2" default="103.143.19.54"/>
+        <arg name="ntrip_port2" default="8002"/>
+        <arg name="ntrip_mountpoint2" default="RTCM33GRCEJpro"/>
+        <arg name="ntrip_user2" default="wdcorsh788"/>
+        <arg name="ntrip_pass2" default="39293"/>
+
+        <node pkg="unicore_driver" type="unicore_driver" name="unicore_driver" output="screen">
+            <param name="port" value="$(arg port)"/>
+            <param name="baud_rate" value="$(arg baud_rate)"/>
+
+            <param name="enable_rtk" value="$(arg enable_rtk)"/>
+            <param name="gga_sentence" value="$(arg gga_sentence)"/>
+            <param name="ntrip_host" value="$(arg ntrip_host2)"/>
+            <param name="ntrip_port" value="$(arg ntrip_port2)"/>
+            <param name="ntrip_mountpoint" value="$(arg ntrip_mountpoint2)"/>
+            <param name="ntrip_user" value="$(arg ntrip_user2)"/>
+            <param name="ntrip_pass" type="string" value="$(arg ntrip_pass2)"/>
+        </node>
+    </group>
+</launch>
+
